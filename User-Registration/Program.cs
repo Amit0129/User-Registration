@@ -20,6 +20,9 @@
             Console.WriteLine("Enter Mobile no. :");
             string mobile = Console.ReadLine();
             regex.CheckMobileNo(mobile);
+            Console.WriteLine("Enter Password :");
+            string password = Console.ReadLine();
+            regex.CheckPassword(password);
         }
     }
 }

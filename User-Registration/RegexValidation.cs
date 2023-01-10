@@ -54,5 +54,20 @@ namespace User_Registration
                 Console.WriteLine(e.Message);
             }
         }
+        internal void CheckPassword(string password)
+        {
+            string validatepassword = "^[A-Za-z0-9]{8,20}$";
+            try
+            {
+                if (Regex.IsMatch(password, validatepassword))
+                    Console.WriteLine("password validate succesfull");
+                else
+                    Console.WriteLine("Invalid password!!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
     }
 }
