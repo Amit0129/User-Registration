@@ -24,9 +24,9 @@ namespace User_Registration
                 Console.WriteLine(e.Message);
             }
         }
-        public void CheckEmail(string email)
+        internal void CheckEmail(string email)
         {
-            string validateEmail = "^[a-z][a-zA-Z0-9._-]{3,20}@[a-z]{3,10}.(com)$";
+            string validateEmail = "^[a-zA-Z0-9]+[._+-]{0,1}[0-9a-zA-Z]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}([.][a-zA-Z]{2,3}){0,1}$";
             try
             {
                 if (Regex.IsMatch(email, validateEmail))
