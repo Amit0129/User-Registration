@@ -9,13 +9,13 @@ namespace User_Registration
 {
     internal class RegexValidation
     {
-        public void CheckFirstName(string firstname)
+        public void CheckName(string name)
         {
             string validateFirstName = "^[A-Z][a-z]{3,20}$";
             try
             {
-                if (Regex.IsMatch(firstname, validateFirstName))
-                    Console.WriteLine("First Name Valid");
+                if (Regex.IsMatch(name, validateFirstName))
+                    Console.WriteLine(" Name validate succesfull");
                 else
                     Console.WriteLine("Invalid name!!");
             }

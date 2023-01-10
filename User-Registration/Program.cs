@@ -4,13 +4,16 @@
     {
         static void Main(string[] args)
         {
+            RegexValidation regex = new RegexValidation();
             Console.WriteLine("User registration Problem statement");
             Console.WriteLine("*First letter should be capital.");
             Console.WriteLine("*length should be Minimum three characters.");
             Console.WriteLine("Enter First name :");
             string fname = Console.ReadLine();
-            RegexValidation regex = new RegexValidation();
-            regex.CheckFirstName(fname);
+            regex.CheckName(fname);
+            Console.WriteLine("Enter Last name :");
+            string lname = Console.ReadLine();
+            regex.CheckName(lname);
         }
     }
 }
