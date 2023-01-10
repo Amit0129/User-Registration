@@ -17,6 +17,9 @@
             Console.WriteLine("Enter Email id :");
             string email = Console.ReadLine();
             regex.CheckEmail(email);
+            Console.WriteLine("Enter Mobile no. :");
+            string mobile = Console.ReadLine();
+            regex.CheckMobileNo(mobile);
         }
     }
 }
