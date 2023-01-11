@@ -11,16 +11,16 @@ namespace User_Registration
     {
         public bool CheckName(string name)
         {
-            string validateFirstName = "^[A-Z][a-z]{3,20}$";
+            string validateName = "^[A-Z][a-z]{2,}$";
             try
             {
-                if (Regex.IsMatch(name, validateFirstName))
+                if (Regex.IsMatch(name, validateName))
                     //Console.WriteLine("validate succesfull");
                     return true;
 
                 else
                     //Console.WriteLine("Invalid name!!");
-                    return true;
+                    return false;
 
             }
             catch (Exception e)
@@ -31,14 +31,14 @@ namespace User_Registration
         }
         public bool CheckEmail(string email)
         {
-            string validateEmail = "^[a-zA-Z0-9]+[._+-]{0,1}[0-9a-zA-Z]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}([.][a-zA-Z]{2,3}){0,1}$";
+            string validateEmail = "^[0-9a-zA-Z]+[./+_-]{0,1}[0-9a-zA-Z]+[@][a-zA-Z0-9-]+[.][a-zA-Z]{2,}([.][a-zA-Z]{2,}){0,1}$";
             try
             {
                 if (Regex.IsMatch(email, validateEmail))
                     //Console.WriteLine(" email validate succesfull");
                     return true;
                 else
-                    // Console.WriteLine("Invalid email!!");
+                    //Console.WriteLine("Invalid email!!");
                     return false;
             }
             catch (Exception e)
@@ -49,11 +49,11 @@ namespace User_Registration
         }
         public bool CheckMobileNo(string mobile)
         {
-            string validateMobile = "^[0-9]{1,4}\\s[0-9]{10,12}$";
+            string validateMobile = "^[0-9]{2}[ ][6-9][0-9]{9}$";
             try
             {
                 if (Regex.IsMatch(mobile, validateMobile))
-                    // Console.WriteLine(" mobile no validate succesfull");
+                    //Console.WriteLine(" mobile no validate succesfull");
                     return true;
                 else
                     //Console.WriteLine("Invalid mobile no.!!");
@@ -68,7 +68,7 @@ namespace User_Registration
 
         public bool CheckPassword(string password)
         {
-            string validatepassword = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[&%$#@^*!~]).{8,}$";
+            string validatepassword = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=[^!@#$%_]*[!@#$%_][^!@#$%_]*$)[A-Za-z0-9!@#$%_]{8,}$";
             try
             {
                 if (Regex.IsMatch(password, validatepassword))
