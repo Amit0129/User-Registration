@@ -1,3 +1,4 @@
+using System;
 using User_Registration;
 namespace UserRegistrationTestProject
 {
@@ -7,95 +8,138 @@ namespace UserRegistrationTestProject
         RegexValidation validation = new RegexValidation();
 
         [TestMethod]
-        [DataRow("Amit", true)]
-        [DataRow("Ab", false)]
-        [DataRow("amit", false)]
-        public void GivenFirstNameValidation(string firstName, bool expected)
+        [DataRow("Amit", "Input Valid")]
+        [DataRow("Ab", "Input Is Not Valid")]
+        [DataRow("", "Input Should Not Be Empty")]
+        [DataRow(null, "Input Should Not Be Null")]
+        public void GivenFirstNameValidation(string firstName, string expected)
         {
-            RegexValidation validation = new RegexValidation();
-            //Act
-            bool actual = validation.CheckName(firstName);
-            //Assert
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                //Act
+                string actual = validation.CheckName(firstName);
+                Assert.AreEqual(expected, actual);
+            }
+            catch(UserValidationExceptions ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            } 
         }
 
         [TestMethod]
-        [DataRow("Kadivar", true)]
-        [DataRow("Ab", false)]
-        [DataRow("kadivar", false)]
-        public void GivenLastNameValidation(string lastName, bool expected)
+        [DataRow("Nayak", "Input Valid")]
+        [DataRow("Ab", "Input Is Not Valid")]
+        [DataRow("", "Input Should Not Be Empty")]
+        [DataRow(null, "Input Should Not Be Null")]
+        public void GivenLastNameValidation(string lastName, string expected)
         {
-            //Act
-            bool actual = validation.CheckName(lastName);
-            //Assert
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                //Act
+                string actual = validation.CheckName(lastName);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (UserValidationExceptions ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
         }
         [TestMethod]
-        [DataRow("abc123@.com", false)]
-        [DataRow("abc@abc@gmail.com", false)]
-        [DataRow("abc+100@gmail.com", true)]
-        [DataRow("abc@1.com", true)]
-        public void GivenEmailValidation(string email, bool expected)
+        [DataRow("abcabc40@gmail.com", "Input Valid")]
+        [DataRow("", "Input Should Not Be Empty")]
+        [DataRow(null, "Input Should Not Be Null")]
+        public void GivenEmailValidation(string email, string expected)
         {
-            //Act
-            bool actual = validation.CheckEmail(email);
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        [DataRow("91 9652545874", true)]
-        [DataRow("919652545874", false)]
-        [DataRow("9144 9652545874", false)]
-        [DataRow("91 1652545874", false)]
-        public void GivenMobileNumberValidation(string mobileNumber, bool expected)
-        {
-            //Act
-            bool actual = validation.CheckMobileNo(mobileNumber);
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        [DataRow("dA@9fghnjvbn", true)]
-        [DataRow("ADFJVGB", false)]
-        [DataRow("FVGdf", false)]
-        public void GivenPasswordValidation(string password, bool expected)
-        {
-            //Act
-            bool actual = validation.CheckPassword(password);
-            //Assert
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                //Act
+                string actual = validation.CheckEmail(email);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (UserValidationExceptions ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
         }
 
         [TestMethod]
-        [DataRow("abc@gmail.com", true)]
-        [DataRow("abc-100@yahoo.com", true)]
-        [DataRow("abc.100@yahoo.com", true)]
-        [DataRow("abc@1.com", true)]
-        [DataRow("abc111@yahoo.com.au", true)]
-        [DataRow("abc-100@yahoo.com.au", true)]
-        [DataRow("abc@gmail.com.com", true)]
-        [DataRow("abc+100@yahoo.com", true)]
+        [DataRow("91 9090909090", "Input Valid")]
+        [DataRow("919652545874", "Input Is Not Valid")]
+        [DataRow("", "Input Should Not Be Empty")]
+        [DataRow(null, "Input Should Not Be Null")]
+        public void GivenMobileNumberValidation(string mobileNumber, string expected)
+        {
+            try
+            {
+                //Act
+                string actual = validation.CheckMobileNo(mobileNumber);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (UserValidationExceptions ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
+        [TestMethod]
+        [DataRow("dA@9fghnjvbn", "Input Valid")]
+        [DataRow("ADFJVGB", "Input Is Not Valid")]
+        [DataRow("", "Input Should Not Be Empty")]
+        [DataRow(null, "Input Should Not Be Null")]
+        public void GivenPasswordValidation(string password, string expected)
+        {
+            try
+            {
+                //Act
+                string actual = validation.CheckPassword(password);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (UserValidationExceptions ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
+
+        [TestMethod]
+        [DataRow("abc@gmail.com", "Input Valid")]
+        [DataRow("abc-100@yahoo.com", "Input Valid")]
+        [DataRow("abc.100@yahoo.com", "Input Valid")]
+        [DataRow("abc@1.com", "Input Valid")]
+        [DataRow("abc111@yahoo.com.au", "Input Valid")]
+        [DataRow("abc-100@yahoo.com.au", "Input Valid")]
+        [DataRow("abc@gmail.com.com", "Input Valid")]
+        [DataRow("abc+100@yahoo.com", "Input Valid")]
         //Checking for multiple email samples that are Invalid
-        [DataRow("abc", false)]
-        [DataRow("abc@.com.my", false)]
-        [DataRow("abc123@gmail.a", false)]
-        [DataRow("abc123@.com", false)]
-        [DataRow("abc@.com.com", false)]
-        [DataRow(".abc@abc.com", false)]
-        [DataRow("abc()*@gmail.com", false)]
-        [DataRow("abc@%*.com", false)]
-        [DataRow("abc..2002@gmail.com", false)]
-        [DataRow("abc.@gmail.com", false)]
-        [DataRow("abc@abc@gmail.com", false)]
-        [DataRow("abc@gmail.com.1a", false)]
-        [DataRow("abc@gmail.com.aa.au", false)]
-        public void GivenSampleEmailsValidation(string password, bool expected)
+        [DataRow("abc", "Input Is Not Valid")]
+        [DataRow("abc@.com.my", "Input Is Not Valid")]
+        [DataRow("abc123@gmail.a", "Input Is Not Valid")]
+        [DataRow("abc123@.com", "Input Is Not Valid")]
+        [DataRow("abc@.com.com", "Input Is Not Valid")]
+        [DataRow(".abc@abc.com", "Input Is Not Valid")]
+        [DataRow("abc()*@gmail.com", "Input Is Not Valid")]
+        [DataRow("abc@%*.com", "Input Is Not Valid")]
+        [DataRow("abc..2002@gmail.com", "Input Is Not Valid")]
+        [DataRow("abc.@gmail.com", "Input Is Not Valid")]
+        [DataRow("abc@abc@gmail.com", "Input Is Not Valid")]
+        [DataRow("abc@gmail.com.1a", "Input Is Not Valid")]
+        [DataRow("abc@gmail.com.aa.au", "Input Is Not Valid")]
+        public void GivenSampleEmailsValidation(string email, string expected)
         {
-            //Act
-            bool actual = validation.CheckEmail(password);
-            //Assert
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                //Act
+                string actual = validation.CheckEmail(email);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (UserValidationExceptions ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
         }
     }
 }
