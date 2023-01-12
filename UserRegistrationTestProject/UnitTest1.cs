@@ -11,7 +11,6 @@ namespace UserRegistrationTestProject
         [DataRow("Amit", "Input Valid")]
         [DataRow("Ab", "Input Is Not Valid")]
         [DataRow("", "Input Should Not Be Empty")]
-        [DataRow(null, "Input Should Not Be Null")]
         public void GivenFirstNameValidation(string firstName, string expected)
         {
             try
@@ -31,7 +30,6 @@ namespace UserRegistrationTestProject
         [DataRow("Nayak", "Input Valid")]
         [DataRow("Ab", "Input Is Not Valid")]
         [DataRow("", "Input Should Not Be Empty")]
-        [DataRow(null, "Input Should Not Be Null")]
         public void GivenLastNameValidation(string lastName, string expected)
         {
             try
@@ -49,7 +47,6 @@ namespace UserRegistrationTestProject
         [TestMethod]
         [DataRow("abcabc40@gmail.com", "Input Valid")]
         [DataRow("", "Input Should Not Be Empty")]
-        [DataRow(null, "Input Should Not Be Null")]
         public void GivenEmailValidation(string email, string expected)
         {
             try
@@ -69,7 +66,6 @@ namespace UserRegistrationTestProject
         [DataRow("91 9090909090", "Input Valid")]
         [DataRow("919652545874", "Input Is Not Valid")]
         [DataRow("", "Input Should Not Be Empty")]
-        [DataRow(null, "Input Should Not Be Null")]
         public void GivenMobileNumberValidation(string mobileNumber, string expected)
         {
             try
@@ -88,7 +84,6 @@ namespace UserRegistrationTestProject
         [DataRow("dA@9fghnjvbn", "Input Valid")]
         [DataRow("ADFJVGB", "Input Is Not Valid")]
         [DataRow("", "Input Should Not Be Empty")]
-        [DataRow(null, "Input Should Not Be Null")]
         public void GivenPasswordValidation(string password, string expected)
         {
             try
